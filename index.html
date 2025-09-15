@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Left Center Right - LCR Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+  <!-- Load entity classes first -->
+  <script src="entities/playerShip.js"></script>
+  <script src="entities/enemyShip.js"></script>
+  <script src="entities/projectile.js"></script>
+  <!-- Then renderer and game loop -->
+  <script src="renderer.js"></script>
+  <script src="gameLoop.js"></script>
+  <!-- Main game logic last -->
+  <script src="main.js"></script>
+
+
+  <!-- Emergency restored scripts -->
+  <script src="./uiRenderer.js"></script>
+  <script src="./aiBot.js"></script>
+  <script src="./chipManager.js"></script>
+  <script src="./dice.js"></script>
+  <script src="./inputHandler.js"></script>
+  <script src="./player.js"></script>
+  <script src="./stateManager.js"></script>
+  <!-- End emergency restoration -->
+
+        <div id="ui-overlay"></div>
+    </div>
+    <script>
+    // Make the canvas always fill the browser window and resize dynamically
+    function resizeGameCanvas() {
+        const canvas = document.getElementById('game-canvas');
+        if (!canvas) return;
+        // Remove width/height attributes to allow CSS to control size
+        canvas.removeAttribute('width');
+        canvas.removeAttribute('height');
+        // Set canvas size to window size (device pixels)
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        // If the game instance exists, update its context size
+        if (window.lcrGameInstance) {
+            window.lcrGameInstance.canvas = canvas;
+            window.lcrGameInstance.ctx = canvas.getContext('2d');
+        }
+    }
+    window.addEventListener('resize', resizeGameCanvas);
+    window.addEventListener('DOMContentLoaded', resizeGameCanvas);
+    </script>
+</body>
+</html>
