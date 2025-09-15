@@ -9,8 +9,8 @@ class StateManager {
         this.phase = 'waiting'; // 'waiting', 'rolling', 'animating', 'between', 'gameover'
         this.message = '';
         this.animTimer = 0;
-        this.rollAnimationDuration = 900; // ms
-        this.betweenTurnWait = 950; // ms
+        this.rollAnimationDuration = 1600; // ms (was 900ms, increased for slower dice animation)
+        this.betweenTurnWait = 2600; // ms (was 1600ms, increased for longer message display)
         this.lastWinner = null;
 
         // New: starting chips logic
@@ -95,7 +95,7 @@ class StateManager {
             this.phase = 'rolling';
             setTimeout(() => {
                 this.aiTakeTurn();
-            }, 560 + Math.random()*350);
+            }, 900 + Math.random()*500); // was 560+rand*350, now slower for kids
         }
 
         // Animation for dice roll
@@ -106,7 +106,7 @@ class StateManager {
                 this.animTimer = 0;
                 setTimeout(() => {
                     this.processRollResults();
-                }, 360);
+                }, 800); // was 360ms, now longer for kids to see dice results
             }
         }
     }
@@ -147,8 +147,11 @@ class StateManager {
         // Update leftIdx and rightIdx for new player order
         // leftIdx: (turnIndex + 2) % 3
         // rightIdx: (turnIndex + 1) % 3
-        let leftIdx = (this.turnIndex + 2) % 3;
-        let rightIdx = (this.turnIndex + 1) % 3;
+
+        // --- REVERSE LEFT/RIGHT LOGIC ---
+        // Swap left and right indices
+        let leftIdx = (this.turnIndex + 1) % 3;
+        let rightIdx = (this.turnIndex + 2) % 3;
 
         // For each die, process result
         let actionStrings = [];
@@ -190,7 +193,7 @@ class StateManager {
             setTimeout(() => {
                 this.message = `${this.lastWinner.name} wins!`;
                 this.game.uiRenderer.showRestartButton();
-            }, 1200);
+            }, 1800); // was 1200ms, now longer for kids to see winner
             return;
         }
 
@@ -206,7 +209,7 @@ class StateManager {
             // Skip players with no chips (but keep message)
             setTimeout(() => {
                 this.nextTurn();
-            }, 380);
+            }, 700); // was 380ms, now longer for kids to see skip
             return;
         }
         this.currentRollResults = [];
