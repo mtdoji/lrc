@@ -171,7 +171,7 @@ class Piece {
         if (idx!==null && window.MoveValidator && window.MoveValidator.isValidMove(piece, idx)) {
             piece.pointIndex = idx;
             piece.resetPosition();
-            if(window.SoundManager) window.SoundManager.playMove();
+            // Sound removed
             return true;
         }
         return false;
