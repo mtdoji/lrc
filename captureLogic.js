@@ -8,7 +8,7 @@ class CaptureLogic {
         if (enemyPieces.length===1) {
             // Move enemy checker to the bar
             enemyPieces[0].pointIndex = -1;
-            if(window.SoundManager) window.SoundManager.playCapture();
+            // Sound removed
         }
     }
 }
