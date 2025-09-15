@@ -297,7 +297,7 @@ class UIRenderer {
 
         // Instructions content
         modal.innerHTML = `
-            <h2 style="margin-top:0;margin-bottom:0.7em;font-size:1.35em;color:#396bad;text-align:center;">How to Play LCR (Left Center Right)</h2>
+            <h2 style="margin-top:0;margin-bottom:0.7em;font-size:1.35em;color:#396bad;text-align:center;">How to Play Left. Right. Center.</h2>
             <ol style="margin:0 0 0.8em 1.1em;padding:0;">
                 <li>Each player starts with <b style="color:#e53935;">${this.game.stateManager.startingChips}</b> <b style="color:#e53935;">$AVAX</b> chips (shown as red triangles).</li>
                 <li>On your turn, roll as many dice as you have $AVAX chips (up to 3).</li>
