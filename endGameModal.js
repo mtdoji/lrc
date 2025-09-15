@@ -9,7 +9,7 @@ class EndGameModal {
             <button class="modal-btn" onclick="window.EndGameModal.hide()">Close</button>
         </div>`;
         container.style.display = "block";
-        if(window.SoundManager) window.SoundManager.playWin();
+        // Sound removed
         if(window.WagerSystem) window.WagerSystem.resolveWager(winnerIdx);
         if(window.UIManager) window.UIManager.updateUI();
     }
